@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Valentine?</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #ffd6e8;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: #fff;
+      padding: 50px 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(255, 105, 180, 0.25);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      animation: popIn 0.8s ease;
+    }
+
+    h1 {
+      color: #ff4d88;
+      margin-bottom: 15px;
+      font-size: 2.2rem;
+    }
+
+    p {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 32px;
+      font-size: 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .start-btn {
+      background: #ff4d88;
+      color: white;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    .yes {
+      background: #ff4d88;
+      color: white;
+      margin-right: 10px;
+      z-index: 2;
+    }
+
+    .no {
+      background: #ffd6e8;
+      color: #ff4d88;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp linear forwards;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) scale(1.4);
+        opacity: 0;
+      }
+    }
+
+    @keyframes popIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .side-pic {
+  position: fixed;
+  width: 180px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(255, 77, 136, 0.35);
+  animation: slideIn 1s ease;
+}
+
+.left-pic {
+  left: 150px;
+  bottom: 200px;
+}
+
+.right-pic {
+  right: 150px;
+  bottom: 200px;
+}
+
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* hide pic on very small screens */
+@media (max-width: 600px) {
+  .side-pic {
+    display: none;
+  }
+}
+
+  </style>
+</head>
+
+<body>
+<img src="her.png" alt="cutie" class="side-pic left-pic" id="sidePic">
+  <div class="card" id="card">
+    <h1>Hii kanmani🫶🫶</h1>
+    <h1>I know it’s late and i can be dumb sometimes (most of the times)</h1>
+    <p>but i made this just for you 💕</p>
+    <button class="start-btn" onclick="next()">click click click hehee</button>
+  </div>
+
+  <script>
+    const card = document.getElementById("card");
+
+    function next() {
+      card.innerHTML = `
+        <h1>Will you be my Valentine cutiee piee? 💖</h1>
+        <div class="buttons">
+          <button class="yes" id="yes">YES 💕</button>
+          <button class="no" id="no">no</button>
+        </div>
+      `;
+
+      const noBtn = document.getElementById("no");
+      const yesBtn = document.getElementById("yes");
+
+      let scale = 1;
+
+      noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * 200 - 100;
+        const y = Math.random() * 80 - 40;
+        noBtn.style.transform = `translate(${x}px, ${y}px)`;
+
+        scale += 0.15;
+        yesBtn.style.transform = `scale(${scale})`;
+      });
+
+      yesBtn.addEventListener("click", () => {
+        document.getElementById("sidePic").src = "her2.jpg";
+        document.getElementById("sidePic2").src = "her2.jpg";
+        card.innerHTML = `
+          <h1>heheh...you like me or what??🤭</h1>
+          <p>i knew you’d say yes</p>
+          <p>happy valentine’s sweetie😙</p>
+        `;
+      });
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💕";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+<img src="her.png" alt="cutie" class="side-pic right-pic" id="sidePic2">
+</body>
+</html>
